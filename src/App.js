@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import toDoList from "./assets/data";
 import { Header } from "./components/Header";
+import { ToDoItem } from "./components/ToDoItem";
 
 export default class App extends Component {
   constructor(props) {
@@ -11,22 +12,15 @@ export default class App extends Component {
 
   toggleCheck = (i) => {
     this.setState({
-      toDoItems: this.state.toDoItems.map((item) => 
+      toDoItems: this.state.toDoItems.map((item) =>
         item.body === i.body ? { ...item, complete: !item.completed } : item
-      )
-    })
-  }
-
-  renderToDo = () => {
-    return this.state.toDoItems.map((i) => (
-      <tr key={i.body}>
-        <td>{i.body}</td>
-        <td className="text-center">
-          <input className="align-middle" type="checkbox" checked={i.done} onChange={() => this.toggleCheck(i)} />
-        </td>
-      </tr>
-    ));
+      ),
+    });
   };
+
+  renderToDo = () => this.state.toDoItems.map((i) => (
+    <ToDoItem key={i.body} i={i} toggleCheck={this.toggleCheck}/>
+  ));
 
   updateValue = (e) => {
     this.setState({ newToDo: e.target.value });
