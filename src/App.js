@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import toDoList from "./assets/data";
+import { Header } from "./components/Header";
 
 export default class App extends Component {
   constructor(props) {
@@ -44,11 +45,7 @@ export default class App extends Component {
   render = () => (
     <div className="container">
       <div className="row">
-        <div className="col-12">
-          <h2 className="bg-primary text-white text-center p2">
-            {this.state.userName} To Do List
-          </h2>
-        </div>
+        <Header name={this.state.userName} />
       </div>
 
       <div className="row">
